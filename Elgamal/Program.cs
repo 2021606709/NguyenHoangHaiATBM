@@ -5,9 +5,9 @@ namespace Elgamal
 {
     class Program
     {
-        private static readonly Random random = new Random();
+        static readonly Random random = new Random();
 
-        private static BigInteger GCD(BigInteger a, BigInteger b)
+        static BigInteger GCD(BigInteger a, BigInteger b)
         {
             while (b != 0)
             {
@@ -18,7 +18,7 @@ namespace Elgamal
             return a;
         }
 
-        private static BigInteger GenKey(BigInteger q)
+        static BigInteger GenKey(BigInteger q)
         {
             BigInteger maxInt32Value = new BigInteger(int.MaxValue);
             BigInteger key = RandomBigInteger(BigInteger.Pow(10, 20), maxInt32Value);
@@ -29,7 +29,7 @@ namespace Elgamal
             return key;
         }
 
-        private static BigInteger Power(BigInteger a, BigInteger b, BigInteger c)
+        static BigInteger Power(BigInteger a, BigInteger b, BigInteger c)
         {
             BigInteger x = 1;
             BigInteger y = a;
@@ -45,7 +45,7 @@ namespace Elgamal
             return x % c;
         }
 
-        private static Tuple<List<BigInteger>, BigInteger> Encrypt(string msg, BigInteger q, BigInteger h, BigInteger g)
+        static Tuple<List<BigInteger>, BigInteger> Encrypt(string msg, BigInteger q, BigInteger h, BigInteger g)
         {
             List<BigInteger> enMsg = new List<BigInteger>();
 
@@ -61,7 +61,7 @@ namespace Elgamal
             return Tuple.Create(enMsg, p);
         }
 
-        private static List<char> Decrypt(List<BigInteger> enMsg, BigInteger p, BigInteger key, BigInteger q)
+        static List<char> Decrypt(List<BigInteger> enMsg, BigInteger p, BigInteger key, BigInteger q)
         {
             List<char> drMsg = new List<char>();
 
@@ -74,7 +74,7 @@ namespace Elgamal
             return drMsg;
         }
 
-        private static BigInteger RandomBigInteger(BigInteger min, BigInteger max)
+        static BigInteger RandomBigInteger(BigInteger min, BigInteger max)
         {
             byte[] bytes = new byte[max.ToByteArray().Length];
             random.NextBytes(bytes);
@@ -82,7 +82,7 @@ namespace Elgamal
             return result % (max - min) + min;
         }
 
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             string msg = "Truong Dai Hoc Cong Nghiep 2 HsnS";
             Console.WriteLine("Original Message: " + msg);
